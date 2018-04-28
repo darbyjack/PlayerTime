@@ -1,0 +1,5 @@
+name: PlayerTime
+version: ${project.version}
+main: me.glaremasters.playertime.PlayerTime
+authors: [blockslayer22]
+description: PlayerTime
