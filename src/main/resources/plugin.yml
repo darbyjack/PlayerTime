@@ -3,3 +3,8 @@ version: ${project.version}
 main: me.glaremasters.playertime.PlayerTime
 authors: [blockslayer22]
 description: PlayerTime
+
+commands:
+  ptcheck:
+    description: Check your player time
+    usage: /ptcheck

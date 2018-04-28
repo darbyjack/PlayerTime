@@ -1,6 +1,9 @@
 package me.glaremasters.playertime.events;
 
+import java.util.concurrent.TimeUnit;
 import me.glaremasters.playertime.PlayerTime;
+import org.apache.commons.lang.time.DateFormatUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,7 +20,8 @@ public class Leave implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        i.playTimeConfig.set(player.getUniqueId().toString(), player.getStatistic(Statistic.PLAY_ONE_TICK));
+        int time = player.getStatistic(Statistic.PLAY_ONE_TICK);
+        i.playTimeConfig.set(player.getUniqueId().toString(), time);
         i.saveTime();
     }
 
