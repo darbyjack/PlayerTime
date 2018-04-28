@@ -1,1 +1,4 @@
 # PlayerTime ${project.version}
+
+messages:
+  self-check: "&aYou have been playing for &c%d minutes &aand &c%d seconds&a."
