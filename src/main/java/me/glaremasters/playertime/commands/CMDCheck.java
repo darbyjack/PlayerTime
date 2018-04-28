@@ -50,7 +50,7 @@ public class CMDCheck implements CommandExecutor {
                 }
                 if (!ptime.contains(offlinePlayer.getUniqueId().toString())) {
                     player.sendMessage(color(config.getString("messages.no-playtime-data")));
-                    return false;
+                    return true;
                 }
 
                 int time = ptime.getInt(offlinePlayer.getUniqueId().toString());
