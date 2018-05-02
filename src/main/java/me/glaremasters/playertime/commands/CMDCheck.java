@@ -30,12 +30,13 @@ public class CMDCheck implements CommandExecutor {
             if (args.length < 1) {
                 int time = player.getStatistic(Statistic.PLAY_ONE_TICK);
                 int seconds = time / 20;
-                int miliseconds = seconds * 1000;
+                int millis = seconds * 1000;
 
-                String playTime = color(String.format(config.getString("messages.self-check"), TimeUnit.MILLISECONDS.toMinutes(miliseconds),
-                        TimeUnit.MILLISECONDS.toSeconds(miliseconds) -
-                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(miliseconds)))
-                );
+                String playTime = color(String.format(config.getString("messages.self-check"), TimeUnit.MILLISECONDS.toHours(millis),
+                        TimeUnit.MILLISECONDS.toMinutes(millis) -
+                                TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
+                        TimeUnit.MILLISECONDS.toSeconds(millis) -
+                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis))));
                 player.sendMessage(playTime);
                 return true;
             }
@@ -55,12 +56,13 @@ public class CMDCheck implements CommandExecutor {
 
                 int time = ptime.getInt(offlinePlayer.getUniqueId().toString());
                 int seconds = time / 20;
-                int miliseconds = seconds * 1000;
+                int millis = seconds * 1000;
 
-                String playTime = color(String.format(config.getString("messages.check-others"), TimeUnit.MILLISECONDS.toMinutes(miliseconds),
-                        TimeUnit.MILLISECONDS.toSeconds(miliseconds) -
-                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(miliseconds))).replace("{name}", offlinePlayer.getName())
-                );
+                String playTime = color(String.format(config.getString("messages.check-others"), TimeUnit.MILLISECONDS.toHours(millis),
+                        TimeUnit.MILLISECONDS.toMinutes(millis) -
+                                TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
+                        TimeUnit.MILLISECONDS.toSeconds(millis) -
+                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis))));
                 player.sendMessage(playTime);
 
                 return true;

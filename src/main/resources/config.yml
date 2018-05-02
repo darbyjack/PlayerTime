@@ -1,8 +1,8 @@
 # PlayerTime ${project.version}
 
 messages:
-  self-check: "&aYou have been playing for &c%d minutes &aand &c%d seconds&a."
-  check-others: "&c{name} &ahas played for &c%d minutes &aand &c%d seconds&a."
+  self-check: "&aYou have been playing for &c%dhours, %dminutes &aand &c%d seconds&a."
+  check-others: "&c{name} &ahas played for &c%dhours, %dminutes &aand &c%d seconds&a."
   incorrect-usage: "Too many arguments. Use /ptcheck or /ptcheck <name>"
   never-played-before: "Data for this player was not found. Never played?"
   no-playtime-data: "There was no saved playtime data for this player"
