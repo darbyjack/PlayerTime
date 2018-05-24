@@ -58,7 +58,7 @@ public class CMDCheck implements CommandExecutor {
                 int seconds = time / 20;
                 int millis = seconds * 1000;
 
-                String playTime = color(String.format(config.getString("messages.check-others"), TimeUnit.MILLISECONDS.toHours(millis),
+                String playTime = color(String.format(config.getString("messages.check-others").replace("{name}", offlinePlayer.getName()), TimeUnit.MILLISECONDS.toHours(millis),
                         TimeUnit.MILLISECONDS.toMinutes(millis) -
                                 TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
                         TimeUnit.MILLISECONDS.toSeconds(millis) -
