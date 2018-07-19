@@ -12,14 +12,14 @@ import org.bukkit.event.player.PlayerQuitEvent;
  */
 public class Leave implements Listener {
 
-    PlayerTime i = PlayerTime.getI();
+    private PlayerTime playerTime = PlayerTime.getI();
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         int time = player.getStatistic(Statistic.PLAY_ONE_TICK);
-        i.playTimeConfig.set(player.getUniqueId().toString(), time);
-        i.saveTime();
+        playerTime.playTimeConfig.set(player.getUniqueId().toString(), time);
+        playerTime.saveTime();
     }
 
 }

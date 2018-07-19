@@ -17,8 +17,8 @@ import org.bukkit.entity.Player;
  */
 public class CMDCheck implements CommandExecutor {
 
-    FileConfiguration config = PlayerTime.getI().getConfig();
-    FileConfiguration ptime = PlayerTime.getI().playTimeConfig;
+    private FileConfiguration config = PlayerTime.getI().getConfig();
+    private FileConfiguration ptime = PlayerTime.getI().playTimeConfig;
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {

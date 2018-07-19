@@ -10,10 +10,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PlayerTime extends JavaPlugin {
 
-    private static PlayerTime i;
+    private static PlayerTime playerTime;
 
     public static PlayerTime getI() {
-        return i;
+        return playerTime;
     }
 
     public File playTime = new File(this.getDataFolder(), "playtime.yml");
@@ -22,7 +22,7 @@ public final class PlayerTime extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        i = this;
+        playerTime = this;
         saveDefaultConfig();
         saveTime();
 
