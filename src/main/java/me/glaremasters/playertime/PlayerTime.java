@@ -66,8 +66,11 @@ public final class PlayerTime extends JavaPlugin {
     @Override
     public void onDisable() {
         for (Player player : Bukkit.getOnlinePlayers()) {
-            playerTime.playTimeConfig.set(player.getUniqueId().toString(), ticksToMillis(player));
-            playerTime.saveTime();
+            if (playerTime.getDatabase().hasTime(player.getUniqueId().toString())) {
+                playerTime.getDatabase().setTime(player.getUniqueId().toString(), String.valueOf(ticksToMillis(player)));
+            } else {
+                playerTime.getDatabase().insertUser(player.getUniqueId().toString(),String.valueOf(ticksToMillis(player)));
+            }
         }
     }
 
