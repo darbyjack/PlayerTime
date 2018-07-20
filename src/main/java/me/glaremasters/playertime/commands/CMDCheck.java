@@ -67,7 +67,7 @@ public class CMDCheck implements CommandExecutor {
     }
 
     public static void messageConvert(CommandSender sender, Player player) {
-        String endTime = DurationFormatUtils.formatDuration(ticksToMillis(player), "dd:HH:mm:ss");
+        String endTime = DurationFormatUtils.formatDuration(ticksToMillis(player), "d:H:m:s");
         String[] parts = endTime.split(":");
         String days = parts[0];
         String hours = parts[1];
@@ -77,7 +77,7 @@ public class CMDCheck implements CommandExecutor {
     }
 
     public static void messageConvertOffline(CommandSender sender, OfflinePlayer player) {
-        String endTime = DurationFormatUtils.formatDuration(Integer.valueOf(PlayerTime.getI().getDatabase().getTime(player.getUniqueId().toString())), "dd:HH:mm:ss");
+        String endTime = DurationFormatUtils.formatDuration(Integer.valueOf(PlayerTime.getI().getDatabase().getTime(player.getUniqueId().toString())), "d:H:m:s");
         String[] parts = endTime.split(":");
         String days = parts[0];
         String hours = parts[1];
