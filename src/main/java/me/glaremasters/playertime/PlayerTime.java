@@ -8,6 +8,7 @@ import me.glaremasters.playertime.database.DatabaseProvider;
 import me.glaremasters.playertime.database.databases.yml.YML;
 import me.glaremasters.playertime.database.mysql.MySQL;
 import me.glaremasters.playertime.events.Leave;
+import me.glaremasters.playertime.updater.SpigotUpdater;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -51,6 +52,9 @@ public final class PlayerTime extends JavaPlugin {
 
         taskChainFactory = BukkitTaskChainFactory.create(this);
 
+        SpigotUpdater updater = new SpigotUpdater(this, 58915);
+        updateCheck(updater);
+
         setDatabaseType();
 
         getServer().getPluginManager().registerEvents(new Leave(), this);
@@ -88,6 +92,17 @@ public final class PlayerTime extends JavaPlugin {
         } catch (IOException e) {
             getLogger().log(Level.WARNING, "Could not save PlayTime Data!");
             e.printStackTrace();
+        }
+    }
+
+    private void updateCheck(SpigotUpdater updater) {
+        try {
+            if (updater.checkForUpdates()) {
+                getLogger().info("You appear to be running a version other than our latest stable release." + " You can download our newest version at: " + updater.getResourceURL());
+            }
+        } catch (Exception ex) {
+            getLogger().info("Could not check for updates! Stacktrace:");
+            ex.printStackTrace();
         }
     }
 }
