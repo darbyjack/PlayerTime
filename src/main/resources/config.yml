@@ -1,8 +1,17 @@
 # PlayerTime ${project.version}
 
+# Supports YML or MySQL
+database:
+  type: YML
+# Uncomment when using MySQL
+#  host: "localhost"
+#  port: 3306
+#  username: "root"
+#  password: "password"
+#  database: "playertime"
+#  pool-size: 10
 
-format-self: "&aYou have been playing for {days} days, {hours} hours, {minutes} minutes, {seconds} seconds"
-format-others: "&a{name} has been playing for {days} days, {hours} hours, {minutes} minutes, {seconds} seconds"
+format: "&a{name} has been playing for {days} days, {hours} hours, {minutes} minutes, {seconds} seconds"
 
 messages:
   incorrect-usage: "Too many arguments. Use /ptcheck or /ptcheck <name>"

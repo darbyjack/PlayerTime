@@ -62,6 +62,10 @@
       <id>sonatype</id>
       <url>https://oss.sonatype.org/content/groups/public/</url>
     </repository>
+    <repository>
+      <id>Aikari</id>
+      <url>http://ci.emc.gs/nexus/content/groups/aikar/</url>
+    </repository>
   </repositories>
 
   <dependencies>
@@ -70,6 +74,21 @@
       <artifactId>spigot-api</artifactId>
       <version>1.12.2-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>co.aikar</groupId>
+      <artifactId>taskchain-core</artifactId>
+      <version>3.6.0</version>
+    </dependency>
+    <dependency>
+      <groupId>co.aikar</groupId>
+      <artifactId>taskchain-bukkit</artifactId>
+      <version>3.6.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.zaxxer</groupId>
+      <artifactId>HikariCP</artifactId>
+      <version>3.1.0</version>
     </dependency>
   </dependencies>
 </project>

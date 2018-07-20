@@ -19,15 +19,23 @@ public class Leave implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        playerTime.playTimeConfig.set(player.getUniqueId().toString(), ticksToMillis(player));
-        playerTime.saveTime();
+        if (playerTime.getDatabase().hasTime(player.getUniqueId().toString())) {
+            playerTime.getDatabase().setTime(player.getUniqueId().toString(), String.valueOf(ticksToMillis(player)));
+        } else {
+            playerTime.getDatabase().insertUser(player.getUniqueId().toString(),String.valueOf(ticksToMillis(player)));
+        }
+
+
     }
 
     @EventHandler
     public void onKick(PlayerKickEvent event) {
         Player player = event.getPlayer();
-        playerTime.playTimeConfig.set(player.getUniqueId().toString(), ticksToMillis(player));
-        playerTime.saveTime();
+        if (playerTime.getDatabase().hasTime(player.getUniqueId().toString())) {
+            playerTime.getDatabase().setTime(player.getUniqueId().toString(), String.valueOf(ticksToMillis(player)));
+        } else {
+            playerTime.getDatabase().insertUser(player.getUniqueId().toString(),String.valueOf(ticksToMillis(player)));
+        }
     }
 
 }
