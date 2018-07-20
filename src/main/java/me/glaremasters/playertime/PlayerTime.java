@@ -2,12 +2,16 @@ package me.glaremasters.playertime;
 
 import me.glaremasters.playertime.commands.CMDCheck;
 import me.glaremasters.playertime.events.Leave;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
+
+import static me.glaremasters.playertime.commands.CMDCheck.ticksToMillis;
 
 public final class PlayerTime extends JavaPlugin {
 
@@ -35,7 +39,10 @@ public final class PlayerTime extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            playerTime.playTimeConfig.set(player.getUniqueId().toString(), ticksToMillis(player));
+            playerTime.saveTime();
+        }
     }
 
     public void saveTime() {
