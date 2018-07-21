@@ -3,7 +3,7 @@
 # Do not change this
 config-version: 1
 
-plugin-prefix: "[PlayerTime]"
+plugin-prefix: "[&dPlayer&eTime]"
 
 # Supports YML or MySQL
 database:
