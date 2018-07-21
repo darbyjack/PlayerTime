@@ -5,7 +5,7 @@ import co.aikar.taskchain.TaskChain;
 import co.aikar.taskchain.TaskChainFactory;
 import me.glaremasters.playertime.commands.CMDCheck;
 import me.glaremasters.playertime.database.DatabaseProvider;
-import me.glaremasters.playertime.database.databases.yml.YML;
+import me.glaremasters.playertime.database.yml.YML;
 import me.glaremasters.playertime.database.mysql.MySQL;
 import me.glaremasters.playertime.events.Leave;
 import me.glaremasters.playertime.updater.SpigotUpdater;

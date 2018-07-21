@@ -1,4 +1,4 @@
-package me.glaremasters.playertime.database.databases.yml;
+package me.glaremasters.playertime.database.yml;
 
 import me.glaremasters.playertime.PlayerTime;
 import me.glaremasters.playertime.database.DatabaseProvider;
