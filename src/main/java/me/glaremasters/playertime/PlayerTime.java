@@ -4,6 +4,7 @@ import co.aikar.taskchain.BukkitTaskChainFactory;
 import co.aikar.taskchain.TaskChain;
 import co.aikar.taskchain.TaskChainFactory;
 import me.glaremasters.playertime.commands.CMDCheck;
+import me.glaremasters.playertime.commands.CMDReload;
 import me.glaremasters.playertime.commands.CMDTop;
 import me.glaremasters.playertime.database.DatabaseProvider;
 import me.glaremasters.playertime.database.mysql.MySQL;
@@ -55,6 +56,8 @@ public final class PlayerTime extends JavaPlugin {
     public void onEnable() {
 
         playerTime = this;
+
+        checkConfig();
         saveDefaultConfig();
         saveTime();
 
@@ -71,6 +74,7 @@ public final class PlayerTime extends JavaPlugin {
 
         getCommand("ptcheck").setExecutor(new CMDCheck());
         getCommand("pttop").setExecutor(new CMDTop(this));
+        getCommand("ptreload").setExecutor(new CMDReload(this));
 
     }
 
@@ -143,5 +147,13 @@ public final class PlayerTime extends JavaPlugin {
             announcement = "Could not fetch announcements!";
         }
         return announcement;
+    }
+
+    public void checkConfig() {
+        if (!getConfig().isSet("config-version") || getConfig().getInt("config-version") != 1) {
+            File oldConfig = new File(getDataFolder(), "config.yml");
+            File newConfig = new File(getDataFolder(), "config-old.yml");
+            oldConfig.renameTo(newConfig);
+        }
     }
 }

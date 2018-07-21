@@ -12,3 +12,6 @@ commands:
   pttop:
     description: Check the top times
     usage: /pttop
+  ptreload:
+    description: Reload config
+    ussage: /ptreload

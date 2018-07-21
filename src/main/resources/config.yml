@@ -1,5 +1,8 @@
 # PlayerTime ${project.version}
 
+# Do not change this
+config-version: 1
+
 plugin-prefix: "[PlayerTime]"
 
 # Supports YML or MySQL
