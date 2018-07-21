@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import static me.glaremasters.playertime.commands.CMDCheck.timeFormat;
+import static me.glaremasters.playertime.events.GUI.uuids;
 import static me.glaremasters.playertime.utils.ColorUtil.color;
 
 /**
@@ -56,6 +57,7 @@ public class CMDTop implements CommandExecutor {
                 top.setItem(i, material);
             }
             player.openInventory(top);
+            uuids.add(player.getUniqueId());
         }
         return true;
     }

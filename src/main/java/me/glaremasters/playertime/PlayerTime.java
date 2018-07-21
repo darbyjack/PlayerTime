@@ -9,6 +9,7 @@ import me.glaremasters.playertime.database.DatabaseProvider;
 import me.glaremasters.playertime.database.mysql.MySQL;
 import me.glaremasters.playertime.database.yml.YML;
 import me.glaremasters.playertime.events.Announcement;
+import me.glaremasters.playertime.events.GUI;
 import me.glaremasters.playertime.events.Leave;
 import me.glaremasters.playertime.updater.SpigotUpdater;
 import org.apache.commons.io.IOUtils;
@@ -66,6 +67,7 @@ public final class PlayerTime extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new Leave(), this);
         getServer().getPluginManager().registerEvents(new Announcement(this), this);
+        getServer().getPluginManager().registerEvents(new GUI(), this);
 
         getCommand("ptcheck").setExecutor(new CMDCheck());
         getCommand("pttop").setExecutor(new CMDTop(this));
