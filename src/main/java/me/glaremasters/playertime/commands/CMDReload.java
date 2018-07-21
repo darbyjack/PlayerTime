@@ -23,7 +23,7 @@ public class CMDReload implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            if (!player.hasPermission("playertime.top")) return true;
+            if (!player.hasPermission("playertime.reload")) return true;
         }
         playerTime.reloadConfig();
         return true;
