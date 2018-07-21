@@ -1,5 +1,7 @@
 # PlayerTime ${project.version}
 
+plugin-prefix: "[PlayerTime]"
+
 # Supports YML or MySQL
 database:
   type: YML

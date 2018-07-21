@@ -3,6 +3,9 @@ package me.glaremasters.playertime.database.yml;
 import me.glaremasters.playertime.PlayerTime;
 import me.glaremasters.playertime.database.DatabaseProvider;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 /**
  * Created by GlareMasters
  * Date: 7/19/2018
@@ -39,5 +42,24 @@ public class YML implements DatabaseProvider {
         return PlayerTime.getI().playTimeConfig.getString(uuid);
     }
 
+    @Override
+    public Map<String, Integer> getTopTen() {
+        Map<String, Integer> topTen = new HashMap<>();
+
+        for (String key : playerTime.playTimeConfig.getKeys(false)) {
+            topTen.put(key, Integer.valueOf(playerTime.playTimeConfig.getString(key)));
+        }
+
+        List<Map.Entry<String, Integer>> list = new LinkedList<>(topTen.entrySet());
+        list.sort((o1, o2) -> o2.getValue() - o1.getValue());
+
+        topTen.clear();
+
+        for (Map.Entry<String, Integer> aList : list) {
+            topTen.put(aList.getKey(), aList.getValue());
+        }
+
+        return topTen;
+    }
 
 }

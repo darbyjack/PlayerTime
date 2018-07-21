@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by GlareMasters
@@ -71,6 +73,20 @@ public class MySQL implements DatabaseProvider {
             ex.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public Map<String, Integer> getTopTen() {
+        Map<String, Integer> topTen = new HashMap<>();
+        try {
+            ResultSet rs = executeQuery(Query.GET_TOP_TEN);
+            while (rs.next()) {
+                topTen.put(rs.getString("uuid"), Integer.valueOf(rs.getString("time")));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return topTen;
     }
 
     @Override

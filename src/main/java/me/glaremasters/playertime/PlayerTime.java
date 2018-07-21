@@ -4,11 +4,14 @@ import co.aikar.taskchain.BukkitTaskChainFactory;
 import co.aikar.taskchain.TaskChain;
 import co.aikar.taskchain.TaskChainFactory;
 import me.glaremasters.playertime.commands.CMDCheck;
+import me.glaremasters.playertime.commands.CMDTop;
 import me.glaremasters.playertime.database.DatabaseProvider;
-import me.glaremasters.playertime.database.yml.YML;
 import me.glaremasters.playertime.database.mysql.MySQL;
+import me.glaremasters.playertime.database.yml.YML;
+import me.glaremasters.playertime.events.Announcement;
 import me.glaremasters.playertime.events.Leave;
 import me.glaremasters.playertime.updater.SpigotUpdater;
+import org.apache.commons.io.IOUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -16,9 +19,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.logging.Level;
 
 import static me.glaremasters.playertime.commands.CMDCheck.ticksToMillis;
+import static me.glaremasters.playertime.utils.AnnouncementUtil.unescape_perl_string;
 
 public final class PlayerTime extends JavaPlugin {
 
@@ -58,8 +65,10 @@ public final class PlayerTime extends JavaPlugin {
         setDatabaseType();
 
         getServer().getPluginManager().registerEvents(new Leave(), this);
+        getServer().getPluginManager().registerEvents(new Announcement(this), this);
 
         getCommand("ptcheck").setExecutor(new CMDCheck());
+        getCommand("pttop").setExecutor(new CMDTop(this));
 
     }
 
@@ -107,5 +116,30 @@ public final class PlayerTime extends JavaPlugin {
             getLogger().info("Could not check for updates! Stacktrace:");
             ex.printStackTrace();
         }
+    }
+
+    /**
+     * Grab the announcement from the API
+     *
+     * @return announcement in string text form
+     */
+    public String getAnnouncements() {
+        String announcement = "";
+        try {
+            URL url = new URL("https://glaremasters.me/api/announcements/playertime/?id=" + getDescription()
+                    .getVersion());
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestProperty("User-Agent",
+                    "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
+            try (InputStream in = con.getInputStream()) {
+                String encoding = con.getContentEncoding();
+                encoding = encoding == null ? "UTF-8" : encoding;
+                announcement = unescape_perl_string(IOUtils.toString(in, encoding));
+                con.disconnect();
+            }
+        } catch (Exception exception) {
+            announcement = "Could not fetch announcements!";
+        }
+        return announcement;
     }
 }

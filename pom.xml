@@ -6,7 +6,7 @@
 
   <groupId>me.glaremasters</groupId>
   <artifactId>PlayerTime</artifactId>
-  <version>1.0.1-RELEASE</version>
+  <version>1.0.1-BETA</version>
   <packaging>jar</packaging>
 
   <name>PlayerTime</name>
@@ -66,6 +66,10 @@
       <id>Aikari</id>
       <url>http://ci.emc.gs/nexus/content/groups/aikar/</url>
     </repository>
+    <repository>
+      <id>rayzr-repo</id>
+      <url>https://cdn.rawgit.com/Rayzr522/maven-repo/master/</url>
+    </repository>
   </repositories>
 
   <dependencies>
@@ -89,6 +93,16 @@
       <groupId>com.zaxxer</groupId>
       <artifactId>HikariCP</artifactId>
       <version>3.1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.6</version>
+    </dependency>
+    <dependency>
+      <groupId>me.rayzr522</groupId>
+      <artifactId>jsonmessage</artifactId>
+      <version>1.0.0</version>
     </dependency>
   </dependencies>
 </project>

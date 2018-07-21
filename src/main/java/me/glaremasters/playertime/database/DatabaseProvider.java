@@ -1,5 +1,7 @@
 package me.glaremasters.playertime.database;
 
+import java.util.Map;
+
 /**
  * Created by GlareMasters
  * Date: 7/19/2018
@@ -16,4 +18,8 @@ public interface DatabaseProvider {
     void setTime(String time, String uuid);
 
     String getTime(String uuid);
+
+    Map<String, Integer> getTopTen();
+
+
 }
