@@ -66,6 +66,18 @@ public class CMDCheck implements CommandExecutor {
         return millis;
     }
 
+    public static String timeFormat(Integer time) {
+        String endFormat;
+        String amount = DurationFormatUtils.formatDuration(time, "d:H:m:s");
+        String[] parts = amount.split(":");
+        String days = parts[0];
+        String hours = parts[1];
+        String minutes = parts[2];
+        String sec = parts[3];
+        endFormat = color(PlayerTime.getI().getConfig().getString("gui.time-format").replace("{days}", days).replace("{hours}", hours).replace("{minutes}", minutes).replace("{seconds}", sec));
+        return endFormat;
+    }
+
     public static void messageConvert(CommandSender sender, Player player) {
         String endTime = DurationFormatUtils.formatDuration(ticksToMillis(player), "d:H:m:s");
         String[] parts = endTime.split(":");

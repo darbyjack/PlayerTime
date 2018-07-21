@@ -44,7 +44,7 @@ public class YML implements DatabaseProvider {
 
     @Override
     public Map<String, Integer> getTopTen() {
-        Map<String, Integer> topTen = new HashMap<>();
+        Map<String, Integer> topTen = new LinkedHashMap<>();
 
         for (String key : playerTime.playTimeConfig.getKeys(false)) {
             topTen.put(key, Integer.valueOf(playerTime.playTimeConfig.getString(key)));

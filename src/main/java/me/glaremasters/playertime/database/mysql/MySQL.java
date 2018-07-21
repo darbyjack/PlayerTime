@@ -4,6 +4,7 @@ import com.sun.rowset.CachedRowSetImpl;
 import com.zaxxer.hikari.HikariDataSource;
 import me.glaremasters.playertime.PlayerTime;
 import me.glaremasters.playertime.database.DatabaseProvider;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 
 import javax.sql.rowset.CachedRowSet;
@@ -12,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -77,7 +79,7 @@ public class MySQL implements DatabaseProvider {
 
     @Override
     public Map<String, Integer> getTopTen() {
-        Map<String, Integer> topTen = new HashMap<>();
+        Map<String, Integer> topTen = new LinkedHashMap<>();
         try {
             ResultSet rs = executeQuery(Query.GET_TOP_TEN);
             while (rs.next()) {

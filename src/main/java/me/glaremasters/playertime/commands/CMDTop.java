@@ -11,7 +11,13 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
+import static me.glaremasters.playertime.commands.CMDCheck.timeFormat;
+import static me.glaremasters.playertime.utils.ColorUtil.color;
 
 /**
  * Created by GlareMasters
@@ -30,21 +36,24 @@ public class CMDTop implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            if (!player.hasPermission("playertime.top")) {
-                return true;
-            }
+            if (!player.hasPermission("playertime.top")) return true;
             if (args.length != 0) return true;
-            Inventory top = Bukkit.createInventory(null, 18, "Top 10 GUI");
+            Inventory top = Bukkit.createInventory(null, 18, color(playerTime.getConfig().getString("gui.title")));
             Map<String, Integer> map = playerTime.getDatabase().getTopTen();
-            for (int i = 0; i < playerTime.getDatabase().getTopTen().size(); i++) {
-                ItemStack paper = new ItemStack(Material.PAPER);
-                ItemMeta meta = paper.getItemMeta();
-                String ID = map.keySet().toArray()[i].toString();
-                String name = Bukkit.getServer().getOfflinePlayer(ID).getName();
+            ItemStack material = new ItemStack(Material.getMaterial(playerTime.getConfig().getString("gui.item.material")));
+            ItemMeta meta = material.getItemMeta();
+            for (int i = 0; i < map.size(); i++) {
+                List<String> lore = new ArrayList<>();
+                UUID uuid = UUID.fromString(map.keySet().toArray()[i].toString());
+                String name = Bukkit.getServer().getOfflinePlayer(uuid).getName();
                 String time = map.values().toArray()[i].toString();
-                meta.setDisplayName(name + " - " + time);
-                paper.setItemMeta(meta);
-                top.setItem(i, paper);
+                meta.setDisplayName(color(playerTime.getConfig().getString("gui.item.name").replace("{player}", name)));
+                for (String text : playerTime.getConfig().getStringList("gui.item.lore")) {
+                    lore.add(color(text).replace("{slot}", String.valueOf(i + 1)).replace("{format}", timeFormat(Integer.valueOf(time))));
+                }
+                meta.setLore(lore);
+                material.setItemMeta(meta);
+                top.setItem(i, material);
             }
             player.openInventory(top);
         }

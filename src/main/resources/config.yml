@@ -15,6 +15,17 @@ database:
 
 format: "&a{name} has been playing for {days} days, {hours} hours, {minutes} minutes, {seconds} seconds"
 
+gui:
+  title: "Top Ten PlayerTimes"
+  time-format: "{days} days, {hours} hours, {minutes} minutes, {seconds} seconds"
+  item:
+    name: "{player}'s time"
+    material: "PAPER"
+    lore:
+    - "Ranked #{slot}"
+    - "Time Played: {format}"
+
+
 messages:
   incorrect-usage: "Too many arguments. Use /ptcheck or /ptcheck <name>"
   never-played-before: "Data for this player was not found. Never played?"
