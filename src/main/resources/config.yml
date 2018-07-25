@@ -1,7 +1,7 @@
 # PlayerTime ${project.version}
 
 # Do not change this
-config-version: 1
+config-version: 2
 
 plugin-prefix: "[&dPlayer&eTime&f]"
 
@@ -18,6 +18,9 @@ database:
 
 format: "&a{name} has been playing for {days} days, {hours} hours, {minutes} minutes, {seconds} seconds"
 
+# This will either be gui or text, if it's neither, this won't work.
+leaderboard-type: "gui"
+
 gui:
   title: "Top Ten PlayerTimes"
   time-format: "{days} days, {hours} hours, {minutes} minutes, {seconds} seconds"
@@ -28,8 +31,14 @@ gui:
     - "Ranked #{slot}"
     - "Time Played: {format}"
 
+text-top:
+  title: "&7------------------------"
+  footer: "&7------------------------"
+  content: "&7{place}, &a{name} &f{time}"
+
 
 messages:
   incorrect-usage: "Too many arguments. Use /ptcheck or /ptcheck <name>"
   never-played-before: "Data for this player was not found. Never played?"
   no-playtime-data: "There was no saved playtime data for this player"
+  config-reload: "PlayerTime config has been reloaded!"

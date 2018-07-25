@@ -149,8 +149,8 @@ public final class PlayerTime extends JavaPlugin {
         return announcement;
     }
 
-    public void checkConfig() {
-        if (!getConfig().isSet("config-version") || getConfig().getInt("config-version") != 1) {
+    private void checkConfig() {
+        if (!getConfig().isSet("config-version") || getConfig().getInt("config-version") != 2) {
             File oldConfig = new File(getDataFolder(), "config.yml");
             File newConfig = new File(getDataFolder(), "config-old.yml");
             oldConfig.renameTo(newConfig);

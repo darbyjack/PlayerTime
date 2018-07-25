@@ -6,6 +6,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import static me.glaremasters.playertime.utils.ColorUtil.color;
+
 /**
  * Created by GlareMasters
  * Date: 7/21/2018
@@ -26,6 +28,7 @@ public class CMDReload implements CommandExecutor {
             if (!player.hasPermission("playertime.reload")) return true;
         }
         playerTime.reloadConfig();
+        sender.sendMessage(color(playerTime.getConfig().getString("messages.config-reload")));
         return true;
     }
 
