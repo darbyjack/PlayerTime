@@ -21,6 +21,7 @@ format: "&a{name} has been playing for {days} days, {hours} hours, {minutes} min
 # This will either be gui or text, if it's neither, this won't work.
 leaderboard-type: "gui"
 
+# The "time-format" option also applies to the text based version of the leaderboard.
 gui:
   title: "Top Ten PlayerTimes"
   time-format: "{days} days, {hours} hours, {minutes} minutes, {seconds} seconds"
