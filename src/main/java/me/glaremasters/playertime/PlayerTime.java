@@ -13,6 +13,7 @@ import me.glaremasters.playertime.events.Announcement;
 import me.glaremasters.playertime.events.GUI;
 import me.glaremasters.playertime.events.Leave;
 import me.glaremasters.playertime.updater.SpigotUpdater;
+import me.glaremasters.playertime.utils.SaveTask;
 import org.apache.commons.io.IOUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -75,6 +76,8 @@ public final class PlayerTime extends JavaPlugin {
         getCommand("ptcheck").setExecutor(new CMDCheck());
         getCommand("pttop").setExecutor(new CMDTop(this));
         getCommand("ptreload").setExecutor(new CMDReload(this));
+
+        SaveTask.startTask();
 
     }
 
