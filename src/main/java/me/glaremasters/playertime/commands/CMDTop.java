@@ -47,7 +47,13 @@ public class CMDTop implements CommandExecutor {
                 Map<String, Integer> map = playerTime.getDatabase().getTopTen();
                 ItemStack material = new ItemStack(Material.getMaterial(c.getString("gui.item.material")));
                 ItemMeta meta = material.getItemMeta();
-                for (int i = 0; i < map.size(); i++) {
+                int size;
+                if (map.size() > 10) {
+                    size = 10;
+                } else {
+                    size = map.size();
+                }
+                for (int i = 0; i < size; i++) {
                     List<String> lore = new ArrayList<>();
                     UUID uuid = UUID.fromString(map.keySet().toArray()[i].toString());
                     String name = Bukkit.getServer().getOfflinePlayer(uuid).getName();
