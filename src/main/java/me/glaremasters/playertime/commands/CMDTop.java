@@ -43,13 +43,13 @@ public class CMDTop implements CommandExecutor {
             if (args.length != 0) return true;
             if (!c.getString("leaderboard-type").equalsIgnoreCase("gui") && !c.getString("leaderboard-type").equalsIgnoreCase("text")) return true;
             if (c.getString("leaderboard-type").equalsIgnoreCase("gui")) {
-                Inventory top = Bukkit.createInventory(null, 18, color(c.getString("gui.title")));
+                Inventory top = Bukkit.createInventory(null, 9, color(c.getString("gui.title")));
                 Map<String, Integer> map = playerTime.getDatabase().getTopTen();
                 ItemStack material = new ItemStack(Material.getMaterial(c.getString("gui.item.material")));
                 ItemMeta meta = material.getItemMeta();
                 int size;
-                if (map.size() > 10) {
-                    size = 10;
+                if (map.size() > 9) {
+                    size = 9;
                 } else {
                     size = map.size();
                 }
