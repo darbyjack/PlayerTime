@@ -62,9 +62,9 @@ public class CMDCheck implements CommandExecutor {
     public static int ticksToMillis(Player player) {
         int time;
         try {
-            time = player.getStatistic(Statistic.PLAY_ONE_TICK);
+            time = player.getStatistic(Statistic.PLAY_ONE_MINUTE);
         } catch (NoSuchFieldError e) {
-            time = player.getStatistic(Statistic.valueOf("PLAY_ONE_MINUTE"));
+            time = player.getStatistic(Statistic.valueOf("PLAY_ONE_TICK"));
         }
         int seconds = time / 20;
         int millis = seconds * 1000;
